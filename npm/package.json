@@ -1,0 +1,24 @@
+{
+  "name": "oi-proxy",
+  "version": "0.0.3",
+  "type": "module",
+  "bin": {
+    "oi-proxy": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "install.js",
+    "resolve-binary.js"
+  ],
+  "scripts": {
+    "build": "../npm-build.sh",
+    "prepublishOnly": "if [ \"$SKIP_PLATFORM_BUILD\" != \"1\" ]; then npm run build; else echo \"skip platform build\"; fi",
+    "postinstall": "node ./install.js"
+  },
+  "optionalDependencies": {
+    "@oi-proxy/proxy-darwin-amd64": "0.0.3",
+    "@oi-proxy/proxy-darwin-arm64": "0.0.3",
+    "@oi-proxy/proxy-linux-amd64": "0.0.3",
+    "@oi-proxy/proxy-win32-amd64": "0.0.3"
+  }
+}

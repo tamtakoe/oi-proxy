@@ -1,0 +1,26 @@
+# Go build artifacts
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+coverage.*
+vendor/
+
+# Node.js dependencies and build outputs
+node_modules/
+dist/
+.cache/
+.tmp/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# macOS noise
+.DS_Store
+

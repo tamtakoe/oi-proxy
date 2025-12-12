@@ -1,0 +1,16 @@
+{
+  "name": "@oi-proxy/proxy-darwin-amd64",
+  "version": "0.0.3",
+  "description": "Prebuilt proxy binary for darwin amd64",
+  "files": [
+    "index.js",
+    "bin/oi-proxy"
+  ],
+  "os": [
+    "darwin"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "index.js"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "oi-proxy-demo",
+  "version": "0.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "go run ./cmd/oi-proxy --port 8080 --target https://api.github.com",
+    "prod": "oi-proxy --port 8080 --target https://api.github.com",
+    "stop": "kill $(lsof -ti:8080 2>/dev/null) 2>/dev/null || true",
+    "test": "curl -L -H \"Accept: application/vnd.github+json\" -H \"X-GitHub-Api-Version: 2022-11-28\" http://localhost:8080/users/octocat",
+    "test:dev": "npm run dev --silent & sleep 2; npm run test; npm run stop --silent",
+    "test:prod": "npm run prod --silent & sleep 2; npm run test; npm run stop --silent"
+  },
+  "dependencies": {
+    "oi-proxy": "0.0.3"
+  }
+}

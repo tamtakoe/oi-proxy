@@ -1,0 +1,16 @@
+{
+  "name": "@oi-proxy/proxy-linux-amd64",
+  "version": "0.0.3",
+  "description": "Prebuilt proxy binary for linux amd64",
+  "files": [
+    "index.js",
+    "bin/oi-proxy"
+  ],
+  "os": [
+    "linux"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "index.js"
+}

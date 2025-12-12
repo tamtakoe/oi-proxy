@@ -2,6 +2,30 @@
 
 Lightweight HTTP reverse proxy for local development: route third‑party domains through a local port, useful when cookie-based auth is involved.
 
+Install
+```sh
+npm install oi-proxy
+```
+
+Usage
+```sh
+# minimal
+npx oi-proxy --port 8080 --target https://api.github.com
+
+# with extra options
+npx  oi-proxy --host 0.0.0.0 --port 8080 --target https://api.github.com --strip-prefix /api --cookie-domain api.local
+```
+
+or inside package.json
+```json
+{
+  "scripts": {
+    "auth": "oi-proxy --port 4433 --target https://auth.mysite.com",
+    "api": "oi-proxy --port 8080 --target https://api.mysite.com --strip-prefix /api"
+  }
+}
+```
+
 ## CLI flags
 
 | Flag | Description | Default |
@@ -17,58 +41,7 @@ Lightweight HTTP reverse proxy for local development: route third‑party domain
 | `--cors-allow-methods` | Override `Access-Control-Allow-Methods` | `GET,POST,PUT,PATCH,DELETE,OPTIONS` |
 | `--replace-location` | Replace domain in `Location` header: `"old:new"`. If old empty, uses target host; if new empty, uses `host:port`. Example `":"` replaces target host with local host:port | `""` |
 
-Example:
-
-```bash
-# minimal
-oi-proxy --port 8080 --target https://api.github.com
-
-# with extra options
-oi-proxy --host 0.0.0.0 --port 8080 --target https://api.github.com --strip-prefix /api --cookie-domain api.local
-```
-
-## Build the binary
-
-```bash
-go build -o bin/oi-proxy ./cmd/oi-proxy
-```
-
-## Publish to npm
-
 Packages:
 
 - `npm` — main CLI wrapper with `optionalDependencies`.
 - `npm-platforms/*` — platform-specific packages (`@oi-proxy/proxy-darwin-arm64`, `...`) each shipping a single binary.
-
-Build and publish:
-
-```bash
-# Build binaries for all platforms
-./npm-build.sh
-
-# Build and publish everything
-./npm-publish.sh
-
-# Publish with custom version and with fake publishing (dry-run)
-./npm-publish.sh --version:0.0.2 --dry-run
-```
-
-After publishing, the `oi-proxy` command is available like any npm CLI (via `npx oi-proxy` or `package.json` scripts):
-
-```json
-{
-  "scripts": {
-    "auth": "oi-proxy --port 4433 --target https://auth.mysite.com",
-    "api": "oi-proxy --port 8080 --target https://api.mysite.com --strip-prefix /api"
-  }
-}
-```
-
-## Tests
-
-- Go: `go test ./...`
-- npm scripts (use port `8080`):
-  - `npm run test` — calls GitHub API via an already running proxy.
-  - `npm run test:dev` — starts `go run ./cmd/proxy --port 8080 --target https://api.github.com`, waits 2s, runs `npm run test`, then stops the proxy.
-  - `npm run test:prod` — same but uses the installed `oi-proxy`.
-

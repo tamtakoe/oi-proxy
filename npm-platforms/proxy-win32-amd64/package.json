@@ -1,0 +1,16 @@
+{
+  "name": "@oi-proxy/proxy-win32-amd64",
+  "version": "0.0.3",
+  "description": "Prebuilt proxy binary for windows amd64",
+  "files": [
+    "index.js",
+    "bin/oi-proxy.exe"
+  ],
+  "os": [
+    "win32"
+  ],
+  "cpu": [
+    "x64"
+  ],
+  "main": "index.js"
+}
